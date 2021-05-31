@@ -1,8 +1,11 @@
-const io = require("socket.io")(4000, {
+const ap = require("express")();
+const http = require("http").Server(ap);
+const io = require("socket.io")(http, {
   cors: {
     origin: "*",
   },
 });
+const cors = require("cors");
 
 io.on("connection", (socket) => {
   console.log(socket.id);
@@ -11,3 +14,5 @@ io.on("connection", (socket) => {
     io.emit("recieve", message);
   });
 });
+
+http.listen(4000);
