@@ -7,6 +7,8 @@ const io = require("socket.io")(http, {
 });
 const cors = require("cors");
 
+ap.use(cors)
+
 io.on("connection", (socket) => {
   console.log(socket.id);
   socket.on("send", (message) => {
